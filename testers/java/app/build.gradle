@@ -1,0 +1,16 @@
+plugins {
+  id 'application'
+}
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  implementation 'com.google.code.gson:gson:2.9.0'
+}
+
+application {
+  mainClass = 'retest.App'
+  applicationDefaultJvmArgs = ['--add-opens=java.base/java.util.regex=ALL-UNNAMED']
+}

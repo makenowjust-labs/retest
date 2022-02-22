@@ -1,0 +1,4 @@
+@import "carbon-components-svelte/css/g10.css";
+@import '@carbon/type/scss/classes';
+
+@include carbon--type-classes();
