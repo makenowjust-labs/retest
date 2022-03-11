@@ -90,7 +90,6 @@
 				};
 				const promise = (async () => {
 					const result = await match(language.key, regex, input, timeout);
-					console.log(result);
 					results[index].result = result;
 				})();
 				promises.push(promise);

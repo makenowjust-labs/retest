@@ -37,7 +37,8 @@ function serializeMatchOrError($match_or_error, $time) {
   }
 }
 
-$request = json_decode(fgets(STDIN));
+$stdin = fgets(STDIN);
+$request = json_decode($stdin);
 $source = $request->source;
 $flags = $request->flags;
 $input = $request->input;
@@ -46,7 +47,7 @@ $start = microtime(true);
 
 try {
   $matched = preg_match("/$source/$flags", $input, $match, PREG_OFFSET_CAPTURE | PREG_UNMATCHED_AS_NULL);
-  echo json_encode(serializeMatchOrError($matched ? $match : NULL, microtime(true) - $start));
+  echo json_encode(serializeMatchOrError($matched ? $match : NULL, microtime(true) - $start), JSON_INVALID_UTF8_IGNORE | JSON_UNESCAPED_UNICODE);
 } catch (\Throwable $error) {
-  echo json_encode(serializeMatchOrError($error, microtime(true) - $start));
+  echo json_encode(serializeMatchOrError($error, microtime(true) - $start), JSON_INVALID_UTF8_IGNORE | JSON_UNESCAPED_UNICODE);
 }

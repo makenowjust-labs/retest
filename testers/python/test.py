@@ -41,12 +41,24 @@ def serialize(match_or_error, time):
     }
   else:
     match = match_or_error
+
+    indices = []
+    for v in (match[0], *match.groups()):
+      if isinstance(v, bytes):
+        v = str(v, encoding='utf8')
+      indices.append(v)
+    groups = {}
+    for k, v in match.groupdict().items():
+      if isinstance(v, bytes):
+        v = str(v, encoding='utf8')
+      groups[k] = v
+
     return {
       'type': 'match',
       'match': {
         'index': match.start(),
-        'indices': (match[0], *match.groups()),
-        'groups': match.groupdict(),
+        'indices': indices,
+        'groups': groups,
       },
       'time': time,
     }

@@ -2,7 +2,6 @@ use strict;
 use warnings;
 use utf8;
 use feature qw(say);
-binmode(STDOUT, ":utf8");
 
 use Time::HiRes qw(gettimeofday tv_interval);
 use JSON::PP qw(encode_json decode_json);
